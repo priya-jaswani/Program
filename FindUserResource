@@ -1,1 +1,71 @@
 
+package Programs1;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class MaxMinResource {
+
+	public static void main(String[] args) {
+		String[][] log1 = { { "58523", "user_1", "resource_1" }, { "62314", "user_2", "resource_2" },
+				{ "54001", "user_1", "resource_3" }, { "200", "user_6", "resource_5" },
+				{ "215", "user_6", "resource_4" }, { "54060", "user_2", "resource_3" },
+				{ "53760", "user_3", "resource_3" }, { "58522", "user_22", "resource_1" },
+				{ "53651", "user_5", "resource_3" }, { "2", "user_6", "resource_1" }, { "100", "user_6", "resource_6" },
+				{ "400", "user_7", "resource_2" }, { "100", "user_8", "resource_6" },
+				{ "54359", "user_1", "resource_3" } };
+
+		Map<String, MinMax> maxLogsPerUser = getMaxLogsPerUser(log1);
+		System.out.println(maxLogsPerUser.toString());
+	}
+
+	private static Map<String, MinMax> getMaxLogsPerUser(String[][] logs) {
+		Map<String, MinMax> maxUserLogsPerUser = new HashMap<>();
+		String name;
+		Integer time;
+		for (int i = 0; i < logs.length; i++) {
+			name = logs[i][1];
+			time = Integer.parseInt(logs[i][0]);
+			if (maxUserLogsPerUser.containsKey(name)) {
+				MinMax existingPair = maxUserLogsPerUser.get(name);
+				existingPair.setMax(Math.max(existingPair.getMax(), time));
+				existingPair.setMin(Math.min(existingPair.getMin(), time));
+			} else {
+				MinMax pair = new MinMax(time, time);
+				maxUserLogsPerUser.put(name, pair);
+			}
+		}
+		return maxUserLogsPerUser;
+
+	}
+}
+
+	class MinMax {
+		private Integer min;
+		private Integer max;
+
+		public MinMax(int min, int max) {
+			this.min = min;
+			this.max = max;
+		}
+
+		public Integer getMin() {
+			return min;
+		}
+
+		public void setMin(Integer min) {
+			this.min = min;
+		}
+
+		public Integer getMax() {
+			return max;
+		}
+
+		public void setMax(Integer max) {
+			this.max = max;
+		}
+
+		public String toString() {
+			return "Max is " + this.max + " Min is " + this.min;
+		}
+	}

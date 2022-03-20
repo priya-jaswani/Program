@@ -1,1 +1,43 @@
 
+
+public class NodeRightView {
+
+	static class Node {
+		int value;
+		Node left, right;
+
+		Node(int value) {
+			this.value = value;
+			left = null;
+			right = null;
+		}
+	}
+
+
+	public static void main(String[] args) {
+		Node root = new Node(1);
+		root.left = new Node(2);
+		root.right = new Node(3);
+		root.right.left = new Node(4);
+		root.right.right = new Node(5);
+		LeftViewOfTree instance = new LeftViewOfTree();
+		instance.leftView(root, 1);
+	}
+	
+	static class LeftViewOfTree {
+		int maxLevel = 0;
+
+		void leftView(Node root, int level) {
+			if (root == null) {
+				return;
+			}
+			if (maxLevel < level) {
+				System.out.print(root.value + " ");
+				maxLevel = level;
+			}
+			leftView(root.right, level + 1);
+			leftView(root.left, level + 1);
+		}
+	}
+
+}

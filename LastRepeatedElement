@@ -1,0 +1,27 @@
+package Programs1;
+
+import java.util.HashMap;
+
+public class LastRepeatedElement {
+
+	public static void main(String[] args) {
+		int arr[] = new int[] { 1, 5, 5, 6, 6, 7, 1 };
+		int ans = findDup(arr, 10);
+		System.out.println(ans);
+
+	}
+
+	private static int findDup(int[] arr, int i) {
+		int lastrepeated = -1;
+		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+		for (int i1 = 0; i1 < arr.length; i1++) {
+			if (map.containsKey(arr[i1]))
+				lastrepeated = arr[i1];
+			else
+				map.put(arr[i1], 1);
+		}
+
+		return lastrepeated;
+	}
+
+}

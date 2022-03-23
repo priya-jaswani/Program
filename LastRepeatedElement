@@ -27,13 +27,13 @@ public class LastRepeatedElement {
 		return lastrepeated;
 	}
 	
-	//Optimized solution
+	//Another solution
 
 	private static int findDup1(int[] arr, int i, int j) {
 		int result = -1;
 		while (i <= j) {
-			if (arr[i] == arr[j]) {
-				result = arr[i];
+			if (arr[j]==arr[j-1] || arr[i] == arr[j]) {
+				result = arr[j];
 				break;
 			}
 			i++;

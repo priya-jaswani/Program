@@ -1,13 +1,16 @@
 package Programs1;
 
+//Sorted Array
+
 import java.util.HashMap;
 
 public class LastRepeatedElement {
 
 	public static void main(String[] args) {
-		int arr[] = new int[] { 1, 5, 5, 6, 6, 7, 1 };
+		int arr[] = new int[] { 1, 5, 5, 6, 6, 7, 1, 6 };
 		int ans = findDup(arr, 10);
 		System.out.println(ans);
+		System.out.println(findDup1(arr, 0, arr.length - 1));
 
 	}
 
@@ -23,5 +26,20 @@ public class LastRepeatedElement {
 
 		return lastrepeated;
 	}
+	
+	//Optimized solution
 
+	private static int findDup1(int[] arr, int i, int j) {
+		int result = -1;
+		while (i <= j) {
+			if (arr[i] == arr[j]) {
+				result = arr[i];
+				break;
+			}
+			i++;
+			j--;
+		}
+
+		return result;
+	}
 }

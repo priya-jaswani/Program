@@ -1,0 +1,28 @@
+package Programs1;
+
+public class FindColumnName {
+
+	public static void main(String[] args) {
+		int num = 26;
+		findColumnName(num);
+
+	}
+
+	private static void findColumnName(int num) {
+		StringBuilder columnName = new StringBuilder();
+		while (num > 0) {
+			int rem = num % 26;
+			if (rem == 0) {
+				columnName.append("Z");
+				num = (num / 26) - 1;
+			} else {
+				columnName.append((char) ((rem - 1) + 'A'));
+				num = num / 26;
+			
+			}
+		}
+		System.out.println(columnName);
+
+	}
+
+}
